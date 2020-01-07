@@ -1,11 +1,14 @@
-from flask import Flask
+from info import create_app
 
-app = Flask(__name__)
+
+app = create_app('development')
 
 
 @app.route('/')
 def hello():
     return 'hello'
+
+
 
 
 if __name__ == '__main__':
