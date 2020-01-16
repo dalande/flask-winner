@@ -1,9 +1,12 @@
+# encoding=utf-8
 import logging
 
 
 class Config(object):
     """工程配置信息"""
-    pass
+    # redis配置
+    REDIS_HOST = "127.0.0.1"
+    REDIS_PORT = 6379
 
 
 class DevelopementConfig(Config):

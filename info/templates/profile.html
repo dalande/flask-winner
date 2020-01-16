@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ProfileInfo</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/profile_reset.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/profile_main.css">
+    <script type="text/javascript" src="../static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="../static/js/profile_info.js"></script>
+
+</head>
+<body class="inframe_body">
+    <form class="base_info">
+        <h3>
+            profile查询
+            <a href="/index" class="return_botton">
+                返回首页
+            </a>
+        </h3>
+        <div class="form-group">
+            <label>Profile ID：</label>
+            <input id="signature" type="text" name="signature" class="input_txt">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="input_sub" id="btn1">点击查询</button>
+        </div>
+        <div id="div1" style="display:none;">正在查询 .</div>
+        <div id="div2" style="display:none;">正在查询 . .</div>
+        <div id="div3" style="display:none;">正在查询 . . .</div>
+        <div id="div4" style="display:none;">查询成功！</div>
+        <br>
+    <ul id="ul1" style="display:none;">
+      <li>
+          超 链 接: <a href="" id="s1"></a>
+      </li>
+      <li>
+          评 论 者: <span id="s2"></span>
+      </li>
+        <li>
+          介 绍: <span id="s3"></span>
+      </li>
+        <li>
+          评论者排名: <span id="s4"></span>
+      </li>
+        <li>
+          投 票: <span id="s5"></span>
+      </li>
+        <li>
+          评论总数: <span id="s6"></span>
+      </li>
+        <li>
+          近一月评论数: <span id="s7"></span>
+      </li>
+        <li>
+          近一年评论数: <span id="s8"></span>
+      </li>
+        <li>
+          差 评 数: <span id="s9"></span>
+      </li>
+        <li>
+          平均星级: <span id="s10"></span>
+      </li>
+        <br>
+        <li>
+            <a href="/profile_num">点击查看留评活跃度 >></a>
+        </li>
+
+    </ul>
+    <br>
+
+    <div id="data" style="display:none;" >
+        my_dict
+    </div>
+    </form>
+
+</body>
+</html>

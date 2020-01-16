@@ -1,14 +1,35 @@
+#encoding=utf-8
 from logging.handlers import RotatingFileHandler
 import logging
 from flask import Flask
 from config import config
+import redis
+
+
+# 数据库
+redis_store = None
 
 
 def create_app(config_name):
     """通过传入不同的配置名字，初始化其对应配置的应用实例"""
+
     setup_log(config_name)
     app = Flask(__name__)
     app.config.from_object(config[config_name])
+
+    # 配置redis
+    global redis_store
+    redis_store = redis.StrictRedis(host=config[config_name].REDIS_HOST, port=config[config_name].REDIS_PORT)
+
+    # 注册蓝图
+    from info.modules.index import index_blu
+    app.register_blueprint(index_blu)
+
+    from info.modules.profile import profile_blu
+    app.register_blueprint(profile_blu)
+
+    from info.modules.scatter import scatter_blu
+    app.register_blueprint(scatter_blu)
 
     return app
 

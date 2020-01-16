@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>profile</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/index_reset.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/index_main.css">
+	<script type="text/javascript" src="../static/js/echarts.min.js"></script>
+</head>
+<body>
+	<div class="breadcrub">
+		评论数分布详情
+	</div>
+	<div class="spannels">
+		<div class="spannel scolor01">
+			<em id="m1">5</em><span>条</span>
+			<b>近一月评论数</b>
+		</div>
+		<div class="spannel scolor02">
+			<em id="m2">14</em><span>条</span>
+			<b>近三月评论数</b>
+		</div>
+		<div class="spannel2 scolor03">
+			<em id="m3">32</em><span>条</span>
+			<b>近一年评论数</b>
+		</div>
+	</div>
+
+	<div class="pannel">
+		<div id="chart_show" class="chart_show"></div>
+	</div>
+	<script>
+        var data = {{my_dict}};
+        var m1 = document.getElementById("m1");
+        m1.innerHTML=data[0];
+        var m2 = document.getElementById("m2");
+        m2.innerHTML=data[0] + data[1] + data[2];
+        let y_sum = 0;
+        for(j = 0; j < data.length; j++) {
+            y_sum += data[j];
+        }
+        var m3 = document.getElementById("m3");
+        m3.innerHTML=y_sum;
+
+		var oChart = echarts.init(document.getElementById('chart_show'));
+		var chartopt = {
+					    title:{
+					        text: '近一年评论数',
+		                    left: 'center',
+		                    top: '10'
+					    },
+					    tooltip:{
+					        trigger: 'axis'
+					    },
+					    legend: {
+					        data:['number'],
+		                    top: '40'
+					    },
+					    toolbox: {
+					        show : true,
+					        feature : {
+					            mark : {show: true},
+					            dataView : {show: true, readOnly: false},
+					            magicType : {show: true, type: ['line','bar']},
+					            restore : {show: true},
+					            saveAsImage : {show: true}
+					        }
+					    },
+				    	calculable : true,
+					    xAxis : [
+					        {
+		                        name: '月份',
+					            type : 'category',
+					            boundaryGap : false,
+					            data : ["12月前","11月前","10月前","9月前","8月前","7月前","6月前","5月前","4月前","3月前","2月前","1月前"]
+					        }
+					    ],
+					    yAxis : [
+					        {
+		                        name: '评论数量',
+					            type : 'value'
+					        }
+					    ],
+					    series : [
+					        {
+					            name:'number',
+					            type:'line',
+					            smooth:true,
+					            itemStyle: {normal: {areaStyle: {type: 'default'}, color: '#f80'}, lineStyle: {color: '#f80'}},
+					            data:data.reverse()
+					        }],
+					    areaStyle:{
+						        normal:{
+						            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+						                offset: 0,
+						                color: 'rgba(255,136,0,0.39)'
+						            }, {
+						                offset: .34,
+						                color: 'rgba(255,180,0,0.25)'
+						            },{
+						                offset: 1,
+						                color: 'rgba(255,222,0,0.00)'
+						            }])
+
+						        }
+						    }
+
+            			};
+
+            oChart.setOption(chartopt);
+
+	</script>
+</body>
+</html>
